@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import TicketManagement from './pages/TicketManagement';
 import { isAuthenticated } from './utils/auth';
 import './styles/App.css';
+import './styles/App.css';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
