@@ -1,0 +1,76 @@
+<template>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-content">
+          <router-link to="/" class="logo">
+            🎫 TicketFlow
+          </router-link>
+          <div v-if="showAuthButtons" class="nav-buttons">
+            <router-link to="/auth/login" class="btn btn-secondary">
+              Login
+            </router-link>
+            <router-link to="/auth/signup" class="btn btn-primary">
+              Get Started
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </template>
+  
+  <script>
+  export default {
+    name: 'AppNavbar',
+    props: {
+      showAuthButtons: {
+        type: Boolean,
+        default: true
+      }
+    }
+  }
+  </script>
+  
+  <style scoped>
+  .navbar {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #4F46E5;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 16px;
+  }
+  
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 20px;
+    }
+    
+    .nav-buttons .btn {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+  </style>
