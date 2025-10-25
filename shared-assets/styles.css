@@ -1,0 +1,200 @@
+/**
+ * Shared Styles for TicketFlow Multi-Framework Application
+ * 
+ * This stylesheet contains common design tokens and utility classes
+ * used across all three implementations (React, Vue.js, Twig/PHP)
+ */
+
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+   :root {
+    /* Primary Colors */
+    --color-primary: #4F46E5;
+    --color-primary-hover: #4338CA;
+    
+    /* Status Colors */
+    --color-open: #10B981;      /* Green */
+    --color-in-progress: #F59E0B; /* Amber */
+    --color-closed: #6B7280;    /* Gray */
+    
+    /* Semantic Colors */
+    --color-danger: #EF4444;
+    --color-danger-hover: #DC2626;
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    
+    /* Neutral Colors */
+    --color-text-primary: #1F2937;
+    --color-text-secondary: #6B7280;
+    --color-text-muted: #9CA3AF;
+    --color-background: #F9FAFB;
+    --color-white: #FFFFFF;
+    --color-border: #E5E7EB;
+    
+    /* Gradient */
+    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-text: linear-gradient(to right, #fbbf24, #f59e0b);
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 
+                   'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 
+                   'Droid Sans', 'Helvetica Neue', sans-serif;
+    
+    /* Container */
+    --container-max-width: 1440px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+  }
+  
+  /* ============================================
+     UTILITY CLASSES
+     ============================================ */
+  
+  /* Container */
+  .container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Status Badges */
+  .status-badge {
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+  
+  .status-open {
+    background-color: var(--color-open);
+    color: var(--color-white);
+  }
+  
+  .status-in_progress {
+    background-color: var(--color-in-progress);
+    color: var(--color-white);
+  }
+  
+  .status-closed {
+    background-color: var(--color-closed);
+    color: var(--color-white);
+  }
+  
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+  }
+  
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+  
+  .btn-danger {
+    background-color: var(--color-danger);
+    color: var(--color-white);
+  }
+  
+  .btn-danger:hover {
+    background-color: var(--color-danger-hover);
+  }
+  
+  /* ============================================
+     RESPONSIVE BREAKPOINTS
+     ============================================ */
+  
+  /* Mobile: 320px - 767px */
+  /* Tablet: 768px - 1023px */
+  /* Desktop: 1024px - 1440px */
+  /* Large Desktop: 1440px+ */
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 16px;
+    }
+  }
+  
+  /* ============================================
+     ANIMATIONS
+     ============================================ */
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .slide-in {
+    animation: slideIn 0.3s ease;
+  }

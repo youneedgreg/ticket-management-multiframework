@@ -1,0 +1,91 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block title %}Ticket Management - TicketFlow{% endblock %}
+
+{% block content %}
+<div class="ticket-management-page">
+    {% include "layouts/dashboard-nav.html.twig" %}
+    
+    <main class="ticket-main">
+        <div class="container">
+            <!-- Header -->
+            <section class="ticket-header">
+                <div>
+                    <h1 class="page-title">Ticket Management</h1>
+                    <p class="page-subtitle">Create, manage, and track all your tickets</p>
+                </div>
+                {% if not showForm and not editing %}
+                    <a href="/tickets?create=true" class="btn btn-primary">+ Create Ticket</a>
+                {% endif %}
+            </section>
+
+            <!-- Form Section -->
+            {% if showForm or editing or _GET.create or _GET.edit %}
+                <section class="form-section">
+                    <div class="form-header">
+                        <h2>{{ editing or _GET.edit ? 'Edit Ticket' : 'Create New Ticket' }}</h2>
+                    </div>
+                    
+                    {% if _GET.edit and not editing %}
+                        {% set editingTicket = null %}
+                        {% for ticket in tickets %}
+                            {% if ticket.id == _GET.edit %}
+                                {% set editingTicket = ticket %}
+                            {% endif %}
+                        {% endfor %}
+                        {% include "components/ticket-form.html.twig" with {'editing': editingTicket} %}
+                    {% else %}
+                        {% include "components/ticket-form.html.twig" %}
+                    {% endif %}
+                </section>
+            {% endif %}
+
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <div class="filter-buttons">
+                    <a href="/tickets" class="filter-btn active">
+                        All ({{ tickets|length }})
+                    </a>
+                    <a href="/tickets?filter=open" class="filter-btn">
+                        Open ({{ tickets|filter(t => t.status == 'open')|length }})
+                    </a>
+                    <a href="/tickets?filter=in_progress" class="filter-btn">
+                        In Progress ({{ tickets|filter(t => t.status == 'in_progress')|length }})
+                    </a>
+                    <a href="/tickets?filter=closed" class="filter-btn">
+                        Closed ({{ tickets|filter(t => t.status == 'closed')|length }})
+                    </a>
+                </div>
+            </section>
+
+            <!-- Tickets List -->
+            <section class="tickets-section">
+                {% set filterStatus = _GET.filter ?? 'all' %}
+                {% set filteredTickets = filterStatus == 'all' ? tickets : tickets|filter(t => t.status == filterStatus) %}
+                
+                {% if filteredTickets|length == 0 %}
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <h3>No tickets found</h3>
+                        <p>
+                            {% if filterStatus == 'all' %}
+                                Create your first ticket to get started!
+                            {% else %}
+                                No {{ filterStatus|replace({'_': ' '}) }} tickets found.
+                            {% endif %}
+                        </p>
+                    </div>
+                {% else %}
+                    <div class="ticket-list">
+                        {% for ticket in filteredTickets %}
+                            {% include "components/ticket-card.html.twig" %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </section>
+        </div>
+    </main>
+
+    {% include "layouts/footer.html.twig" %}
+</div>
+{% endblock %}

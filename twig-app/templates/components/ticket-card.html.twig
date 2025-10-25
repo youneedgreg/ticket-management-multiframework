@@ -1,0 +1,36 @@
+<div class="ticket-card">
+    <div class="ticket-header">
+        <h3 class="ticket-title">{{ ticket.title }}</h3>
+        <span class="status-badge status-{{ ticket.status }}">
+            {{ ticket.status|replace({'_': ' '}) }}
+        </span>
+    </div>
+    
+    {% if ticket.description %}
+        <p class="ticket-description">{{ ticket.description }}</p>
+    {% endif %}
+    
+    <div class="ticket-meta">
+        {% if ticket.priority %}
+            <span class="ticket-priority">
+                Priority: <strong>{{ ticket.priority|capitalize }}</strong>
+            </span>
+        {% endif %}
+        <span class="ticket-date">
+            Created: {{ ticket.createdAt|date('M d, Y') }}
+        </span>
+    </div>
+    
+    <div class="ticket-actions">
+        <form method="GET" action="/tickets" style="display: inline;">
+            <input type="hidden" name="edit" value="{{ ticket.id }}">
+            <button type="submit" class="btn btn-secondary btn-small">Edit</button>
+        </form>
+        <button 
+            onclick="confirmDelete('{{ ticket.id }}')" 
+            class="btn btn-danger btn-small"
+        >
+            Delete
+        </button>
+    </div>
+</div>

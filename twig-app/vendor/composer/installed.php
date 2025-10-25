@@ -3,11 +3,11 @@
         'name' => 'ticketflow/twig-app',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '372b5a8f035d15a1820c77973b825e51e33c722d',
+        'reference' => 'eef51b56b00cd0766260ae55cb6dfb48b05efc81',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'dev' => true,
+        'dev' => false,
     ),
     'versions' => array(
         'symfony/deprecation-contracts' => array(
@@ -40,7 +40,7 @@
         'ticketflow/twig-app' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '372b5a8f035d15a1820c77973b825e51e33c722d',
+            'reference' => 'eef51b56b00cd0766260ae55cb6dfb48b05efc81',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

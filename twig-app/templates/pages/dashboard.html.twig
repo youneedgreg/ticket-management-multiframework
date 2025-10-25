@@ -1,0 +1,98 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block title %}Dashboard - TicketFlow{% endblock %}
+
+{% block content %}
+<div class="dashboard-page">
+    {% include "layouts/dashboard-nav.html.twig" %}
+    
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="dashboard-header">
+                <div>
+                    <h1 class="dashboard-title">Welcome back{% if user %}, {{ user.email }}{% endif %}! 👋</h1>
+                    <p class="dashboard-subtitle">Here's what's happening with your tickets today</p>
+                </div>
+                <a href="/tickets" class="btn btn-primary">Manage Tickets</a>
+            </section>
+
+            <!-- Stats Grid -->
+            <section class="stats-grid">
+                {% include "components/stat-card.html.twig" with {
+                    'icon': '📊',
+                    'title': 'Total Tickets',
+                    'value': stats.total,
+                    'color': 'primary'
+                } %}
+                
+                {% include "components/stat-card.html.twig" with {
+                    'icon': '🟢',
+                    'title': 'Open Tickets',
+                    'value': stats.open,
+                    'color': 'success'
+                } %}
+                
+                {% include "components/stat-card.html.twig" with {
+                    'icon': '🟡',
+                    'title': 'In Progress',
+                    'value': stats.inProgress,
+                    'color': 'warning'
+                } %}
+                
+                {% include "components/stat-card.html.twig" with {
+                    'icon': '⚪',
+                    'title': 'Closed Tickets',
+                    'value': stats.closed,
+                    'color': 'secondary'
+                } %}
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="action-cards">
+                    <a href="/tickets" class="action-card">
+                        <div class="action-icon">➕</div>
+                        <h3>Create New Ticket</h3>
+                        <p>Start tracking a new issue or task</p>
+                    </a>
+                    <a href="/tickets" class="action-card">
+                        <div class="action-icon">📋</div>
+                        <h3>View All Tickets</h3>
+                        <p>See and manage all your tickets</p>
+                    </a>
+                    <div class="action-card action-card-disabled">
+                        <div class="action-icon">📈</div>
+                        <h3>Reports (Coming Soon)</h3>
+                        <p>View detailed analytics and insights</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="recent-activity">
+                <h2 class="section-title">Getting Started</h2>
+                <div class="activity-box">
+                    <div class="activity-item">
+                        <div class="activity-icon">✅</div>
+                        <div class="activity-content">
+                            <h4>You're all set!</h4>
+                            <p>Start by creating your first ticket or exploring the ticket management page.</p>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">💡</div>
+                        <div class="activity-content">
+                            <h4>Pro Tip</h4>
+                            <p>Use status tags to organize your tickets: Open, In Progress, or Closed.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    {% include "layouts/footer.html.twig" %}
+</div>
+{% endblock %}

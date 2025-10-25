@@ -1,0 +1,83 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block title %}Sign Up - TicketFlow{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <a href="/" class="auth-logo">🎫 TicketFlow</a>
+                <h1>Create Account</h1>
+                <p>Start managing your tickets today</p>
+            </div>
+
+            <form class="auth-form" method="POST" action="/auth/signup">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="{{ old.email ?? '' }}"
+                        placeholder="Enter your email"
+                        class="{% if errors.email %}error{% endif %}"
+                    />
+                    {% if errors.email %}
+                        <span class="error-message">{{ errors.email }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password (min. 6 characters)"
+                        class="{% if errors.password %}error{% endif %}"
+                    />
+                    {% if errors.password %}
+                        <span class="error-message">{{ errors.password }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        placeholder="Confirm your password"
+                        class="{% if errors.confirm_password %}error{% endif %}"
+                    />
+                    {% if errors.confirm_password %}
+                        <span class="error-message">{{ errors.confirm_password }}</span>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    Sign Up
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>
+                    Already have an account?
+                    <a href="/auth/login" class="auth-link">Login</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="auth-info">
+            <h2>Join TicketFlow</h2>
+            <p>Get started with the best ticket management system for your team.</p>
+            <div class="auth-features">
+                <div class="auth-feature">✓ Free to get started</div>
+                <div class="auth-feature">✓ No credit card required</div>
+                <div class="auth-feature">✓ Full feature access</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
