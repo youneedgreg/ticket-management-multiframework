@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TicketFlow - Ticket Management{% endblock %}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    {% if session.flash.success is defined %}
+        <div data-flash-success="{{ session.flash.success }}"></div>
+    {% endif %}
+    
+    {% if session.flash.error is defined %}
+        <div data-flash-error="{{ session.flash.error }}"></div>
+    {% endif %}
+    
+    {% block content %}{% endblock %}
+    
+    <script src="/js/app.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
