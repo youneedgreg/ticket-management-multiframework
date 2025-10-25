@@ -31,10 +31,13 @@ class TicketController extends BaseController {
     public function index() {
         $tickets = $this->loadTickets();
         
+        $showForm = isset($_GET['create']);
+
         $this->render('pages/tickets.html.twig', [
             'tickets' => $tickets,
             'editing' => null,
-            'errors' => []
+            'errors' => [],
+            'showForm' => $showForm
         ]);
     }
     
