@@ -10,5 +10,13 @@
         "psr-4": {
             "App\\": "src/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"echo 'Generating autoload files...';\""
+        ],
+        "post-update-cmd": [
+            "@php -r \"echo 'Generating autoload files...';\""
+        ]
     }
 }
