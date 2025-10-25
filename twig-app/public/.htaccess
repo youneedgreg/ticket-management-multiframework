@@ -1,0 +1,37 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+```
+
+---
+
+## ✅ Step 1 Complete!
+
+Your folder structure should now look like this:
+```
+twig-app/
+├── public/
+│   ├── css/            (empty for now)
+│   ├── js/             (empty for now)
+│   ├── .htaccess       ✓
+│   └── index.php       ✓
+├── src/
+│   ├── Controllers/    (empty for now)
+│   ├── Utils/
+│   │   ├── Router.php      ✓
+│   │   ├── Session.php     ✓
+│   │   └── Validator.php   ✓
+│   └── bootstrap.php       ✓
+├── templates/
+│   ├── layouts/        (empty for now)
+│   ├── pages/          (empty for now)
+│   └── components/     (empty for now)
+├── data/
+│   └── tickets.json    ✓
+├── vendor/             (created by composer)
+├── .htaccess           ✓
+├── composer.json       ✓
+└── composer.lock       (created by composer)
